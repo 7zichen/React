@@ -1,0 +1,9 @@
+#backg{background-image: url(../../public/beijin.jpg);background-size: 100%; width: 100%; height: 800px;}
+#sign {width: 500px;height: 400px;background-color: #5f6478;margin: auto;border-radius: 7px;position: relative;top: 120px;}
+#sign h2{text-align: center;padding-top: 40px;font-weight: normal;}
+#sign span{display: inline-block;width: 60px;margin: 10px 20px;}
+#username,#password{width: 360px;height: 40px;border-radius: 5px;font-size: 20px;margin: 10px auto;border:1px solid #ccc}
+#inp{width: 200px;height: 30px;border-radius: 5px;border:1px solid #ccc}
+#sign img{position: relative;left: 20px;}
+#sign button{display: block;width: 130px;height: 40px;border-radius: 5px;background-color: #3eb642;border: 1px solid #3bac3f;font-size: 16px;color: #fff;cursor: pointer;margin: auto;margin-top: 40px;}
+#sign button:hover{background-color: #319f35;}

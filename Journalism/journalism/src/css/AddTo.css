@@ -1,0 +1,17 @@
+#heads{display: block;margin-bottom: 20px;}
+#input{margin:0px 30px;width: 300px;height: 40px;border-radius: 7px;border: 1px solid #ccc;}
+#button{display: block;width: 100px;height: 40px;margin: 20px 0;background-color: #6BC095;border: 1px solid #6BC095;border-radius: 7px;color: #fff;font-size: 16px;cursor: pointer;}
+#number{margin: 0 30px;width: 300px;height: 40px;border-radius: 7px;border: 1px solid #ccc;}
+#numName{margin: 20px 30px;width: 300px;height: 40px;border-radius: 7px;border: 1px solid #ccc;}
+#butt{display: block;width: 100px;height: 40px;margin: 20px 0;background-color: #6BC095;border: 1px solid #6BC095;border-radius: 7px;color: #fff;font-size: 16px;cursor: pointer;}
+#butt:hover{background-color: #4d876a;}
+#button:hover{background-color: #4d876a;}
+#title{margin:0px 20px;margin-top: 20px; width: 300px;height: 40px;border-radius: 7px;border: 1px solid #ccc;}
+#title2{margin:20px 20px;width: 300px;height: 40px;border-radius: 7px;border: 1px solid #ccc;}
+#not{display: inline-block; position: relative;bottom: 36px;left: 150px;margin: 0 20px;}
+#content{display: inline-block; margin: 10px 0px;position: relative;right: 232px;}
+.info{width: 400px;height: 40px;margin: 5px 0px;border:1px solid #ccc;border-radius: 7px;}
+#error{display: block;width: 100px;height: 40px;border-radius: 7px;background-color: #6BC095;border: 1px solid #6BC095;}
+#but{color: #fff;}
+#error:hover{background-color: #4d876a;}
+#img{width: 150px;height: 150px;margin-left: 250px;}

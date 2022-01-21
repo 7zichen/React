@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 数据库操作的映射文件  
+	namespace - 命名空间 对应接口的名字
+-->
+<mapper namespace="com.aowin.dao.UserMapper">	
+	<select id="getUserById" resultType="com.aowin.entity.User">
+		select * from user where user_id = #{userId}
+	</select>
+	<select id="getUserByUsername" resultType="com.aowin.entity.User">
+		select user.*, user_id userId, authority 
+		from user, role 
+		where 
+		username=#{username} and user.role_id=role.role_id
+	</select>
+</mapper>

@@ -1,0 +1,13 @@
+eclipse.preferences.version=1
+encoding//src/main/java=UTF-8
+encoding//src/main/java/com/aowin/controller/NewsController.java=utf-8
+encoding//src/main/java/com/aowin/controller/VerifyController.java=UTF-8
+encoding//src/main/java/com/aowin/dao=GBK
+encoding//src/main/java/com/aowin/entity=GBK
+encoding//src/main/java/com/aowin/filter/PermissionFilter.java=UTF-8
+encoding//src/main/resources=UTF-8
+encoding//src/main/resources/application.properties=UTF-8
+encoding//src/main/resources/application.yml=GBK
+encoding//src/test/java=UTF-8
+encoding//src/test/resources=UTF-8
+encoding/<project>=UTF-8

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 数据库操作的映射文件 namespace - 命名空间 对应接口的名字 -->
+<mapper namespace="com.aowin.dao.NewsMapper">
+	<select id="selectNews" resultMap="newsMap">
+		select * from news n,`column` c
+		<where>
+			n.column_id=c.column_id
+			<if test="_parameter != null and _parameter != ''">
+				and column_name=#{columnName}
+			</if>
+		</where>
+	</select>
+
+	<select id="getNewsById" resultMap="newsDetailMap">
+		select * from 
+			(select 
+				news_id,author,title,content,date news_date,pic,status news_status,
+				remark, news.column_id,column_name
+			 from news, `column`
+			 WHERE news.column_id=`column`.column_id and news_id=#{newsId}) a
+		LEFT JOIN 
+			(select 
+				news_id,id note_id, note.account note_account,text note_text,
+				date note_date, note.status note_status,favor note_favor,
+				portrait note_portrait
+			 from note,customer c
+			 WHERE note.account=c.account) n
+		ON a.news_id=n.news_id
+		LEFT JOIN 
+			(select id reply_id, note_id ,r.account reply_account,text reply_text,
+				date reply_date, r.status reply_status, favor reply_favor, 
+				portrait reply_portrait
+   			 from reply r,customer c
+			 WHERE r.account=c.account) r
+		ON n.note_id=r.note_id
+	</select>
+
+	<resultMap id="newsMap" type="com.aowin.entity.News">
+		<id property="newsId" column="news_id" />
+		<result property="author" column="author" />
+		<result property="title" column="title" />
+		<result property="date" column="date" />
+		<result property="pic" column="pic" />
+		<result property="remark" column="remark" />
+
+		<association property="column"
+			javaType="com.aowin.entity.Column">
+			<id property="columnId" column="column_id" />
+			<result property="columnName" column="column_name" />
+		</association>
+	</resultMap>
+
+	<resultMap type="com.aowin.entity.NewsDetail"
+		id="newsDetailMap">
+		<id property="newsId" column="news_id" />
+		<result property="author" column="author" />
+		<result property="title" column="title" />
+		<result property="content" column="content" />
+		<result property="date" column="news_date" />
+		<result property="pic" column="pic" />
+		<result property="status" column="news_status" />
+		<result property="remark" column="remark" />
+
+		<!-- 一对一的关系映射 映射的是一个类 property - 对应java类的属性名称 javaType - 该属性的数据类型 -->
+		<association property="column"
+			javaType="com.aowin.entity.Column">
+			<id property="columnId" column="column_id" />
+			<result property="columnName" column="column_name" />
+		</association>
+
+		<!-- 一对多关系的映射 映射的是一个集合类 property 对应的java类属性名称 ofType - 集合类中单个对象的数据类型 -->
+		<collection property="notes" resultMap="noteMap">
+
+		</collection>
+	</resultMap>
+
+	<resultMap type="com.aowin.entity.Note" id="noteMap">
+		<id property="id" column="note_id" />
+		<result property="text" column="note_text" />
+		<result property="date" column="note_date" />
+		<result property="status" column="status" />
+		<result property="favor" column="note_favor" />
+
+		<association property="avatar"
+			javaType="com.aowin.entity.Avatar">
+			<id property="account" column="note_account" />
+			<result property="portrait" column="note_portrait" />
+		</association>
+
+		<collection property="replys"
+			ofType="com.aowin.entity.Reply">
+			<id property="id" column="reply_id" />
+			<result property="text" column="reply_text" />
+			<result property="date" column="reply_date" />
+			<result property="favor" column="reply_favor" />
+			<result property="status" column="reply_status" />
+
+			<association property="avatar"
+				javaType="com.aowin.entity.Avatar">
+				<id property="account" column="reply_account" />
+				<result property="portrait" column="reply_portrait" />
+			</association>
+		</collection>
+	</resultMap>
+
+</mapper>

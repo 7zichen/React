@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>后台欢迎页</title>
+	<link rel="stylesheet" href="../css/reset.css" />
+	<link rel="stylesheet" href="../css/content.css" />
+</head>
+<body marginwidth="0" marginheight="0">
+	<div class="container">
+		<div class="public-nav">您当前的位置：<a href="">管理首页</a>>新闻添加</div>
+		<div class="public-content">
+			<div class="public-content-header">
+				<h3>新闻添加</h3>
+			</div>
+			<div class="public-content-cont">
+			<form action="" method="post">
+				<div class="form-group">新闻标题
+				  <input class="form-input-txt" type="text" name="Dream_SiteName" value="" />
+				</div>
+				<div class="form-group">
+					<label for="">新闻所属的栏目</label>
+					
+                   <select class="form-input-txt" name="c">
+                   	<option value="PE" >体育</option>
+                   </select>
+				</div>
+
+					<div class="file"><input type="file" class="form-input-file" />新闻图片</div>
+					
+				</div>
+				
+				<div class="clearfix"></div>
+		
+				
+				<div class="form-group">
+					<label for="">新闻的内容</label>
+					<textarea id="editor_id" name="content"  class="form-input-textara" style="width:700px;height:300px;">
+						&lt;strong&gt;HTML内容&lt;/strong&gt;
+					</textarea> 
+				</div>
+				
+				<div class="form-group">新闻描述
+				  <input class="form-input-txt" type="text" name="Dream_SiteName" value="" />
+				</div>
+				<div class="form-group" style="margin-left:150px;">
+					<input type="button" class="sub-btn" value="提  交"  onclick="getMessage()"/>
+					<input type="reset" class="sub-btn" value="重  置" />
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+<script src="../kingediter/kindeditor-all-min.js"></script>
+<script>
+
+	 KindEditor.ready(function(K) {
+                window.editor = K.create('#editor_id');
+		});
+		
+		function getMessage(){
+			var m=document.getElementById("editor_id").value;
+			console.log(m);
+		}
+</script>
+</body>
+</html>

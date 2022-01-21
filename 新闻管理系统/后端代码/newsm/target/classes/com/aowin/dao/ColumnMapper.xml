@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 数据库操作的映射文件  
+	namespace - 命名空间 对应接口的名字
+-->
+<mapper namespace="com.aowin.dao.ColumnMapper">	
+	<select id="selectColumns"  resultType="com.aowin.entity.Column">
+		select column_id columnId,column_name columnName from `column`
+	</select>
+	
+	<select id="selectColumnByName"  resultType="com.aowin.entity.Column">
+		select column_id columnId,column_name columnName from `column` where column_name=#{columnName}
+	</select>
+	
+	<insert id="addColumn" >
+	insert into `column`(column_name)
+	values(#{columnName})
+	</insert>
+	
+	<update id="updateColumn" parameterType="com.aowin.entity.Column">
+	update `column` set 
+	column_name=#{columnName} 
+	where column_id=#{columnId}
+	</update>
+	
+	<delete id="deleteColumn">
+	delete from `column` where column_id=#{columnId}
+	</delete>
+	
+</mapper>

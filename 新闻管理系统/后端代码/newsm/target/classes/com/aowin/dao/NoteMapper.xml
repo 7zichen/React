@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 数据库操作的映射文件  
+	namespace - 命名空间 对应接口的名字
+-->
+<mapper namespace="com.aowin.dao.NoteMapper">	
+	<select id="selectNote"  resultType="com.aowin.entity.Note">
+		select * from note
+	</select>
+	
+	<select id="selectUnverifyNotes">
+	select * from note where status=1 order by date desc
+	</select>
+	
+	<insert id="addNote" parameterType="com.aowin.entity.Note">
+	insert into note(id,news_id,account,text,date,status,favor)
+	values(#{id}, #{newsId}, #{account},#{text},#{date},#{status},#{favor})
+	</insert>	
+	
+	<update id="updateNote" >
+	update note set 
+	status=#{status} 
+	where id=#{id}
+	</update>
+	
+	<delete id="deleteNote">
+	delete from note where id=#{id}
+	</delete>
+	
+</mapper>

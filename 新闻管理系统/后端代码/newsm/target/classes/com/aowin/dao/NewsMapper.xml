@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 数据库操作的映射文件  
+	namespace - 命名空间 对应接口的名字
+-->
+<mapper namespace="com.aowin.dao.NewsMapper">	
+	<select id="selectNews"  resultType="com.aowin.entity.News">
+		select news_id newsId,author,title,pic,date,column_id columnId,status,verify,remark from news order by date desc
+	</select>
+	
+	<select id="getNewsById" resultType="com.aowin.entity.News" >
+	select news_id newsId,author,title,content,pic,date,column_id columnId,status,verify,remark from news where news_id=#{newsId}
+	</select>
+	
+	<select id="selectUnverifyNews" resultType="com.aowin.entity.News">
+	select news_id newsId,author,title,pic,date,column_id columnId,status,verify,remark from news where verify=0 order by date desc
+	</select>
+	
+	<select id="selectCondition" resultType="com.aowin.entity.News" parameterType="map">
+		select *,news_id newsId from news
+		<where>
+			<if test="newsId != null and newsId != ''">
+				and news_id like concat('%',#{newsId},'%')
+			</if>
+			<if test="title != null and title != ''">
+				and title = #{title}
+			</if>
+			<if test="startDate != null and startDate != ''">
+				and date >= #{startDate}
+			</if>
+			<if test="endDate != null and endDate != ''">
+				and date &lt;= concat(#{endDate}, ' 23:59:59')
+			</if>		
+		</where>
+	</select>
+	
+	<insert id="addNews" parameterType="com.aowin.entity.News">
+	insert into news(news_id,author,title,content,pic,date,column_id,status,verify,remark)
+	values(#{newsId}, #{author},#{title},#{content},#{pic},#{date},#{columnId},#{status},#{verify},#{remark})
+	</insert>
+	
+	<update id="updateNews" parameterType="com.aowin.entity.News">
+	update news set 
+	title=#{title},content=#{content},column_id=#{columnId},pic=#{pic},remark=#{remark} 
+	where news_id=#{newsId}
+	</update>
+	
+	<update id="updateNewsById" parameterType="java.util.Map">
+	update news set verify=#{valid}
+	where news_id=#{newsId}
+	</update>
+	
+	<delete id="deleteNews">
+	delete from news where news_id=#{newsId}
+	</delete>
+	
+</mapper>
